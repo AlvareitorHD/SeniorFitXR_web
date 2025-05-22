@@ -1,0 +1,111 @@
+/* Fuente base y fondo general */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #eaf4fcb9;
+  color: #333;
+}
+
+/* Barra de navegación */
+nav {
+  background: #2196f3; /* Azul principal */
+  padding: 12px 24px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #bbdefb; /* Azul claro al pasar el ratón */
+}
+
+/*Logo en la barra de navegación*/
+nav .logo {
+  max-width: 5%;
+  height: auto;
+  margin-right: 20px;
+  /*Convertir color a blancos y animado*/
+  filter: invert(1);
+  transition: filter 0.3s ease;
+}
+nav .logo:hover {
+  filter: invert(0.8);
+}
+
+/* Contenedor central */
+.container {
+  padding: 30px;
+  max-width: 800px;
+  margin: auto;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-top: 40px;
+}
+.contenedor{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+    padding: 20px;
+    /*background-color: #f0f8ff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);*/
+}
+
+/* Formularios */
+form input,
+form button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  border: 1px solid #90caf9;
+  border-radius: 8px;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #42a5f5;
+  box-shadow: 0 0 5px rgba(66, 165, 245, 0.5);
+}
+
+form button {
+  background-color: #42a5f5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background-color: #1e88e5;
+}
+
+/* Usuarios */
+.user-card {
+  border: 1px solid #bbdefb;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #f0f8ff;
+}
+
+.user-card img {
+  border-radius: 8px;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}

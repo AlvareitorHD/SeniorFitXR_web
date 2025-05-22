@@ -1,0 +1,5 @@
+# Ignorar la carpeta SSL con certificados privados
+ssl/
+
+# Ignorar los modulos de Node.js
+node_modules/

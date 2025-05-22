@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Usuarios</title>
+  <link rel="stylesheet" href="/styles/styles.css" />
+</head>
+<body>
+<%- include('partials/navbar') %>
+  <div class="container">
+    <h1>Usuarios Registrados</h1>
+    <div class="contenedor">
+    <% if (users.length === 0) { %>
+      <p>No hay usuarios registrados todavía.</p>
+    <% } else { %>
+      <% users.forEach(user => { %>
+        <a style="margin-bottom: 20px;" href="/usuarios/<%= user.id %>" class="card">
+          <strong><%= user.name %></strong> - <%= user.height %> cm <br>
+          <img src="<%= user.photoUrl %>" width="100" />
+        </a>
+      <% }) %>
+    <% } %>
+    </div>
+  </div>
+</body>
+</html>

@@ -14,10 +14,27 @@
       <p>No hay usuarios registrados todavía.</p>
     <% } else { %>
       <% users.forEach(user => { %>
-        <a style="margin-bottom: 20px;" href="/usuarios/<%= user.id %>" class="card">
-          <strong><%= user.name %></strong> - <%= user.height %> cm <br>
-          <img src="<%= user.photoUrl %>" width="100" />
-        </a>
+        <div class="user-card" style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background: #e0f7fa;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+          padding: 20px;
+          margin-bottom: 24px;
+          width: 280px;
+          margin-left: auto;
+          margin-right: auto;
+        ">
+          <a href="/usuarios/<%= user.id %>" style="text-decoration: none; color: inherit; width: 100%;">
+            <img src="<%= user.photoUrl %>" alt="Foto de <%= user.name %>" style="width: 100px; height: 100px; display: block; margin: 0 auto 16px auto;" />
+            <div style="text-align: center;">
+              <strong style="font-size: 1.2em;"><%= user.id %>: <%= user.name %></strong>
+              <div style="margin-top: 8px; color: #555;"><%= user.height %> cm</div>
+            </div>
+          </a>
+        </div>
       <% }) %>
     <% } %>
     </div>

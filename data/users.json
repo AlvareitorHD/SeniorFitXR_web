@@ -1,17 +1,50 @@
 [
   {
+    "id": 1,
     "name": "Manolo García",
-    "height": "156",
-    "photoUrl": "/uploads/1747915333482-98013c12-61b1-465b-91f5-46041de3221a.png"
+    "height": 165,
+    "photoUrl": "/uploads/1748217798194-98013c12-61b1-465b-91f5-46041de3221a.png"
   },
   {
+    "id": 2,
     "name": "Maria Perez",
-    "height": "160",
-    "photoUrl": "/uploads/1747915379770-Mujer mayor en su salÃ³n acogedor.png"
+    "height": 156,
+    "photoUrl": "/uploads/1748217818612-Mujer mayor en su salÃ³n acogedor.png"
   },
   {
-    "name": "Usuario",
-    "height": "167",
+    "id": 4,
+    "name": "aa",
+    "height": 156,
     "photoUrl": "/uploads/default.png"
+  },
+  {
+    "id": 5,
+    "name": "aaaaa",
+    "height": 165,
+    "photoUrl": "/uploads/default.png"
+  },
+  {
+    "id": 6,
+    "name": "pepe1",
+    "height": 176,
+    "photoUrl": "/uploads/default.png"
+  },
+  {
+    "id": 7,
+    "name": "jaj",
+    "height": 168,
+    "photoUrl": "/uploads/default.png"
+  },
+  {
+    "id": 8,
+    "name": "alvaro",
+    "height": 170,
+    "photoUrl": "/uploads/default.png"
+  },
+  {
+    "id": 9,
+    "name": "yo",
+    "height": 160,
+    "photoUrl": "/uploads/1748219074858-dirt.jpeg"
   }
 ]

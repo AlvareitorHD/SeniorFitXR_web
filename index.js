@@ -80,28 +80,67 @@ app.get("/api/usuarios", (req, res) => {
   res.json(users);
 });
 
-app.post("/register", (req, res) => {
+app.post("/register", upload.single('photo'), (req, res) => {
   const { name, height } = req.body;
 
-  if (!name || !height) {
-    return res.status(400).json({ error: "Faltan campos requeridos" });
+  // Validaciones básicas
+  if (!name || !name.trim()) {
+    return res.status(400).json({ error: "El nombre no puede estar vacío" });
   }
 
-  // Ruta relativa a la imagen por defecto
-  const defaultPhoto = "/uploads/default.png";
+  if (!height || !height.trim()) {
+    return res.status(400).json({ error: "La altura no puede estar vacía" });
+  }
 
+  // altura debe ser un número entero positivo
+  const heightNum  = parseInt(height, 10);
+
+  if (isNaN(heightNum) || heightNum <= 0 || heightNum >= 250) {
+    return res.status(400).json({ error: "La altura debe ser un número realista positivo" });
+  }
+
+  // Validación de archivo (si se subió uno)
+  if (req.file) {
+    const { mimetype, size, originalname } = req.file;
+
+    if (!mimetype.startsWith("image/")) {
+      return res.status(400).json({ error: "El archivo debe ser una imagen" });
+    }
+
+    if (size > 5 * 1024 * 1024) { // 5MB
+      return res.status(400).json({ error: "La imagen no puede exceder los 5MB" });
+    }
+
+    const validExtensions = [".jpg", ".jpeg", ".png", ".gif"];
+    const ext = path.extname(originalname).toLowerCase();
+
+    if (!validExtensions.includes(ext)) {
+      return res.status(400).json({ error: "La imagen debe tener una extensión válida (.jpg, .jpeg, .png, .gif)" });
+    }
+  }
+
+  // Generar ID automáticamente
+  const newId = users.length > 0 ? users[users.length - 1].id + 1 : 1;
+
+  // Construir ruta de imagen
+  const photoUrl = req.file ? `/uploads/${req.file.filename}` : "/uploads/default.png";
+
+  // Crear y guardar usuario
   const newUser = {
-    name,
-    height,
-    photoUrl: defaultPhoto
+    id: newId,
+    name: name.trim(),
+    height: heightNum,
+    photoUrl
   };
 
   users.push(newUser);
   saveUsersToFile();
 
-  // Para uso desde Unity, devolvemos JSON
-  res.status(201).json({ message: "Usuario registrado", user: newUser });
+  // Redirigir a la página de usuarios
+  res.redirect("/usuarios");
 });
+
+
 
 
 // Iniciar servidor HTTPS

@@ -1,0 +1,45 @@
+<div class="graficas" style="
+  flex: 1 1 400px;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+">
+  <h3>Gráficas de Progreso</h3>
+  <canvas id="graficoEstadisticas"></canvas>
+
+  <script>
+    const ctx = document.getElementById('graficoEstadisticas').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Puntos Totales', 'Puntos Sesión', 'Sesiones', 'Horas Ejercicio'],
+        datasets: [{
+          label: 'Estadísticas de <%= user.name %>',
+          data: [
+            <%= user.puntosTotales %>,
+            <%= user.puntosSesion %>,
+            <%= user.numeroSesiones %>,
+            <%= user.tiempoTotalEjercicio.toFixed(2) %>
+          ],
+          backgroundColor: ['#4caf50', '#2196f3', '#ff9800', '#9c27b0'],
+          borderRadius: 10
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Resumen de Actividad'
+          }
+        },
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  </script>
+</div>

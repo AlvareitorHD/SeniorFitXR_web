@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Expediente de <%= user.name %></title>
+  <link rel="stylesheet" href="/styles/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .contenedor-flex {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 2rem auto;
+      gap: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <div class="contenedor-flex">
+    <%- include('partials/userInfo', { user }) %>
+    <%- include('partials/userCharts', { user }) %>
+  </div>
+</body>
+</html>

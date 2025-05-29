@@ -1,0 +1,55 @@
+<div class="expediente text-center" style="
+  flex: 1 1 400px;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+">
+  <a href="/usuarios" class="btn btn-secondary" style="float: left;">&larr; Volver</a>
+  <img src="<%= user.photoUrl %>" alt="Foto de <%= user.name %>" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover;" onerror="this.src='/uploads/default.jpg';">
+
+  <h2><%= user.name %> (ID: <%= user.id %>)</h2>
+  <p><strong>Registrado el:</strong> 
+    <%= new Date(user.fechaRegistro).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }) %>
+  </p>
+
+  <div class="section">
+    <h4>Información Física</h4>
+    <p>Altura: <%= user.height %> m</p>
+  </div>
+
+  <div class="section">
+    <h4>Estadísticas</h4>
+    <p>Puntos totales: <%= user.puntosTotales %></p>
+    <p>Puntos en sesión: <%= user.puntosSesion %></p>
+    <p>Sesiones realizadas: <%= user.numeroSesiones %></p>
+    <p>Tiempo total de ejercicio: <%= user.tiempoTotalEjercicio.toFixed(2) %> horas</p>
+  </div>
+
+  <div class="section">
+    <h4>Logros</h4>
+    <% if (user.logros.length > 0) { %>
+      <ul>
+        <% user.logros.forEach(logro => { %>
+          <li>🏅 <%= logro.name %></li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p><em>No hay logros todavía.</em></p>
+    <% } %>
+  </div>
+
+  <div class="section">
+    <h4>Retos Completados</h4>
+    <% if (user.retosCompletados.length > 0) { %>
+      <ul>
+        <% user.retosCompletados.forEach(reto => { %>
+          <li>✅ <%= reto %></li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p><em>No ha completado ningún reto aún.</em></p>
+    <% } %>
+  </div>
+</div>

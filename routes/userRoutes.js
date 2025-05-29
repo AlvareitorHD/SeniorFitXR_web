@@ -43,10 +43,34 @@ router.get("/", (req, res) => res.render("index"));
 router.get("/registro", (req, res) => res.render("register"));
 
 router.get("/usuarios", (req, res) => {
+  // Renderiza la vista de usuarios con la lista de usuarios (nombre, altura y fotoURL)
   res.render("users", { users: req.users });
 });
 
-router.get("/api/usuarios", (req, res) => res.json(req.users));
+// Obtener detalles de un usuario específico
+// Mostrar expediente detallado con user.ejs
+router.get("/usuarios/:id", (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  const user = req.users.find(u => u.id === userId);
+
+  if (!user) {
+    return res.status(404).render("error", { message: "Usuario no encontrado" });
+  }
+
+  res.render("user", { user }); // user.ejs
+});
+
+
+router.get("/api/usuarios", (req, res) => {
+  // Devuelve una lista de usuarios (nombre y fotoURL) en formato JSON
+  const users = req.users.map(user => ({
+    id: user.id,
+    name: user.name,
+    photoUrl: user.photoUrl
+  }));
+  res.json(users);
+}
+);
 
 // Registro de usuario
 router.post("/register", upload.single("photo"), (req, res) => {
@@ -58,23 +82,45 @@ router.post("/register", upload.single("photo"), (req, res) => {
 
   const heightNum = parseInt(height, 10);
   if (isNaN(heightNum) || heightNum <= 0 || heightNum >= 250) {
-    return res.status(400).json({ error: "Altura no válida" });
+    return res.status(400).json({ error: "Altura no válida (en metros)" });
   }
 
+  // Validación de la imagen
+  let photoUrl = "/uploads/default.jpg";
   if (req.file) {
     const { mimetype, size, originalname } = req.file;
     const ext = path.extname(originalname).toLowerCase();
     const validExtensions = [".jpg", ".jpeg", ".png", ".gif"];
-    if (!mimetype.startsWith("image/") || size > 5 * 1024 * 1024 || !validExtensions.includes(ext)) {
+    if (
+      !mimetype.startsWith("image/") ||
+      size > 5 * 1024 * 1024 ||
+      !validExtensions.includes(ext)
+    ) {
       return res.status(400).json({ error: "Imagen no válida" });
     }
+
+    photoUrl = `/uploads/${req.file.filename}`;
   }
 
   const newId = users.length > 0 ? users[users.length - 1].id + 1 : 1;
-  const photoUrl = req.file ? `/uploads/${req.file.filename}` : "/uploads/default.png";
 
-  users.push({ id: newId, name: name.trim(), height: heightNum, photoUrl });
+  const nuevoUsuario = {
+    id: newId,
+    name: name.trim(),
+    height: heightNum,
+    photoUrl: photoUrl,
+    puntosTotales: 0,
+    puntosSesion: 0,
+    logros: [],
+    retosCompletados: [],
+    fechaRegistro: new Date().toISOString(),
+    numeroSesiones: 0,
+    tiempoTotalEjercicio: 0
+  };
+
+  users.push(nuevoUsuario);
   saveUsers(users);
+
   res.redirect("/usuarios");
 });
 

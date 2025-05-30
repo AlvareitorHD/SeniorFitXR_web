@@ -72,6 +72,20 @@ router.get("/api/usuarios", (req, res) => {
 }
 );
 
+router.get("/api/usuarios/:id", (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  const user = req.users.find(u => u.id === userId);
+
+  if (!user) {
+    return res.status(404).json({ error: "Usuario no encontrado" });
+  }
+  //Print
+  console.log(`Detalles del usuario ${userId}:`, user);
+
+  // Devuelve el usuario completo en formato JSON
+  res.json(user);
+});
+
 // Registro de usuario
 router.post("/register", upload.single("photo"), (req, res) => {
   const { name, height } = req.body;
@@ -86,7 +100,7 @@ router.post("/register", upload.single("photo"), (req, res) => {
   }
 
   // Validación de la imagen
-  let photoUrl = "/uploads/default.jpg";
+  let photoUrl = "/uploads/default.png";
   if (req.file) {
     const { mimetype, size, originalname } = req.file;
     const ext = path.extname(originalname).toLowerCase();

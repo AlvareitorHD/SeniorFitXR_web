@@ -31,5 +31,31 @@
     "fechaRegistro": "2025-05-29T22:33:50.702Z",
     "numeroSesiones": 0,
     "tiempoTotalEjercicio": 0
+  },
+  {
+    "id": 3,
+    "name": "pepe",
+    "height": 123,
+    "photoUrl": "/uploads/default.png",
+    "puntosTotales": 0,
+    "puntosSesion": 0,
+    "logros": [],
+    "retosCompletados": [],
+    "fechaRegistro": "2025-05-29T22:51:53.514Z",
+    "numeroSesiones": 0,
+    "tiempoTotalEjercicio": 5.4
+  },
+  {
+    "id": 4,
+    "name": "alvaro",
+    "height": 174,
+    "photoUrl": "/uploads/default.png",
+    "puntosTotales": 0,
+    "puntosSesion": 0,
+    "logros": [],
+    "retosCompletados": [],
+    "fechaRegistro": "2025-05-29T23:04:28.195Z",
+    "numeroSesiones": 0,
+    "tiempoTotalEjercicio": 0
   }
 ]

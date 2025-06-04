@@ -138,4 +138,58 @@ router.post("/register", upload.single("photo"), (req, res) => {
   res.redirect("/usuarios");
 });
 
+// Actualizar sólo los datos de un usuario que se han enviado
+router.patch("/api/usuarios/:id", (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  if (isNaN(userId)) {
+    return res.status(400).json({ error: "ID de usuario no válido" });
+  }
+
+  const users = readUsers();
+  const userIndex = users.findIndex(u => u.id === userId);
+  if (userIndex === -1) {
+    return res.status(404).json({ error: "Usuario no encontrado" });
+  }
+
+  const user = users[userIndex];
+
+  const camposActualizables = [
+    "name",
+    "height",
+    "photoUrl",
+    "puntosTotales",
+    "puntosSesion",
+    "logros",
+    "retosCompletados",
+    "numeroSesiones",
+    "tiempoTotalEjercicio"
+  ];
+
+  for (const campo of camposActualizables) {
+    if (req.body[campo] !== undefined) {
+      if (campo === "height") {
+        const heightNum = parseInt(req.body[campo], 10);
+        if (isNaN(heightNum) || heightNum <= 0 || heightNum >= 250) {
+          return res.status(400).json({ error: "Altura no válida (en centímetros)" });
+        }
+        user[campo] = heightNum;
+      } else {
+        user[campo] = req.body[campo];
+      }
+    }
+  }
+
+  users[userIndex] = user;
+  saveUsers(users);
+
+  // Emitir evento a la sala del usuario
+  const io = req.app.locals.io;
+  if (io) {
+    io.to(`usuario-${userId}`).emit("usuarioActualizado", user);
+  }
+
+  res.json({ mensaje: "Usuario actualizado correctamente", usuario: user });
+});
+
+
 module.exports = router;

@@ -5,6 +5,7 @@
   <title>Expediente de <%= user.name %></title>
   <link rel="stylesheet" href="/styles/styles.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
   <style>
     .contenedor-flex {
       display: flex;
@@ -23,5 +24,45 @@
     <%- include('partials/userInfo', { user }) %>
     <%- include('partials/userCharts', { user }) %>
   </div>
+
+  <script>
+    const socket = io();
+    const userId = <%= user.id %>;
+    socket.emit("suscribirseUsuario", userId);
+
+    socket.on("usuarioActualizado", (user) => {
+      // Actualiza datos en la UI
+      document.getElementById("user-name").textContent = `${user.name} (ID: ${user.id})`;
+      document.getElementById("user-photo").src = user.photoUrl || "/uploads/default.jpg";
+      document.getElementById("user-height").textContent = user.height;
+      document.getElementById("user-puntos-totales").textContent = user.puntosTotales;
+      document.getElementById("user-puntos-sesion").textContent = user.puntosSesion;
+      document.getElementById("user-sesiones").textContent = user.numeroSesiones;
+      document.getElementById("user-tiempo").textContent = user.tiempoTotalEjercicio.toFixed(2);
+      document.getElementById("user-fecha").textContent = new Date(user.fechaRegistro).toLocaleDateString('es-ES');
+
+      const logrosList = document.getElementById("user-logros");
+      logrosList.innerHTML = user.logros.length
+        ? user.logros.map(logro => `<li>🏅 ${logro.name}</li>`).join("")
+        : "<li><em>No hay logros todavía.</em></li>";
+
+      const retosList = document.getElementById("user-retos");
+      retosList.innerHTML = user.retosCompletados.length
+        ? user.retosCompletados.map(reto => `<li>✅ ${reto}</li>`).join("")
+        : "<li><em>No ha completado ningún reto aún.</em></li>";
+
+      // Actualiza gráfico
+      if (window.chart) {
+        chart.data.datasets[0].data = [
+          user.puntosTotales,
+          user.puntosSesion,
+          user.numeroSesiones,
+          user.tiempoTotalEjercicio.toFixed(2)
+        ];
+        chart.data.datasets[0].label = `Estadísticas de ${user.name}`;
+        chart.update();
+      }
+    });
+  </script>
 </body>
 </html>

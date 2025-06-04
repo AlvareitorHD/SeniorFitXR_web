@@ -7,14 +7,14 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 ">
   <h3>Gráficas de Progreso</h3>
-  <canvas id="graficoEstadisticas"></canvas>
+  <canvas id="graficoEstadisticas" width="400" height="300"></canvas>
 
   <script>
     const ctx = document.getElementById('graficoEstadisticas').getContext('2d');
-    new Chart(ctx, {
+    window.chart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Puntos Totales', 'Puntos Sesión', 'Sesiones', 'Horas Ejercicio'],
+        labels: ['Puntos Totales', 'Puntos Última Sesión', 'Sesiones', 'Minutos Ejercicio'],
         datasets: [{
           label: 'Estadísticas de <%= user.name %>',
           data: [

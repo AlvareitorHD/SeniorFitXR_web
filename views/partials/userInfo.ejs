@@ -7,49 +7,49 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 ">
   <a href="/usuarios" class="btn btn-secondary" style="float: left;">&larr; Volver</a>
-  <img src="<%= user.photoUrl %>" alt="Foto de <%= user.name %>" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover;" onerror="this.src='/uploads/default.jpg';">
+  <img id="user-photo" src="<%= user.photoUrl %>" alt="Foto de <%= user.name %>" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover;" onerror="this.src='/uploads/default.jpg';">
 
-  <h2><%= user.name %> (ID: <%= user.id %>)</h2>
-  <p><strong>Registrado el:</strong> 
-    <%= new Date(user.fechaRegistro).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }) %>
-  </p>
+  <h2 id="user-name"><%= user.name %> (ID: <%= user.id %>)</h2>
+  <p><strong>Registrado el:</strong> <span id="user-fecha">
+    <%= new Date(user.fechaRegistro).toLocaleDateString('es-ES') %>
+  </span></p>
 
   <div class="section">
     <h4>Información Física</h4>
-    <p>Altura: <%= user.height %> m</p>
+    <p>Altura: <span id="user-height"><%= user.height %></span> m</p>
   </div>
 
   <div class="section">
     <h4>Estadísticas</h4>
-    <p>Puntos totales: <%= user.puntosTotales %></p>
-    <p>Puntos en sesión: <%= user.puntosSesion %></p>
-    <p>Sesiones realizadas: <%= user.numeroSesiones %></p>
-    <p>Tiempo total de ejercicio: <%= user.tiempoTotalEjercicio.toFixed(2) %> horas</p>
+    <p>Puntos totales: <span id="user-puntos-totales"><%= user.puntosTotales %></span></p>
+    <p>Puntos en la última sesión: <span id="user-puntos-sesion"><%= user.puntosSesion %></span></p>
+    <p>Sesiones realizadas: <span id="user-sesiones"><%= user.numeroSesiones %></span></p>
+    <p>Tiempo total de ejercicio: <span id="user-tiempo"><%= user.tiempoTotalEjercicio.toFixed(2) %></span> minutos</p>
   </div>
 
   <div class="section">
     <h4>Logros</h4>
-    <% if (user.logros.length > 0) { %>
-      <ul>
+    <ul id="user-logros">
+      <% if (user.logros.length > 0) { %>
         <% user.logros.forEach(logro => { %>
           <li>🏅 <%= logro.name %></li>
         <% }) %>
-      </ul>
-    <% } else { %>
-      <p><em>No hay logros todavía.</em></p>
-    <% } %>
+      <% } else { %>
+        <li><em>No hay logros todavía.</em></li>
+      <% } %>
+    </ul>
   </div>
 
   <div class="section">
     <h4>Retos Completados</h4>
-    <% if (user.retosCompletados.length > 0) { %>
-      <ul>
+    <ul id="user-retos">
+      <% if (user.retosCompletados.length > 0) { %>
         <% user.retosCompletados.forEach(reto => { %>
           <li>✅ <%= reto %></li>
         <% }) %>
-      </ul>
-    <% } else { %>
-      <p><em>No ha completado ningún reto aún.</em></p>
-    <% } %>
+      <% } else { %>
+        <li><em>No ha completado ningún reto aún.</em></li>
+      <% } %>
+    </ul>
   </div>
 </div>

@@ -4,58 +4,57 @@
     "name": "Manolo García",
     "height": 156,
     "photoUrl": "/uploads/1748557734578-98013c12-61b1-465b-91f5-46041de3221a.png",
-    "puntosTotales": 300,
-    "puntosSesion": 23,
+    "puntosTotales": 20,
+    "puntosSesion": 3,
     "logros": [
       {
         "id": 1,
-        "name": "Logro de prueba :D",
-        "description": "Este es un logro de prueba",
-        "iconUrl": "/uploads/1748558030559-Mujer mayor en su salÃ³n acogedor.png"
+        "name": "Logro de prueba",
+        "description": "Este es un logro de prueba"
       }
     ],
     "retosCompletados": [],
     "fechaRegistro": "2025-05-29T22:28:54.691Z",
-    "numeroSesiones": 3,
-    "tiempoTotalEjercicio": 4.6
+    "numeroSesiones": 4,
+    "tiempoTotalEjercicio": 4.7780985832214355
   },
   {
     "id": 2,
     "name": "Maria Perez",
     "height": 167,
     "photoUrl": "/uploads/1748558030559-Mujer mayor en su salÃ³n acogedor.png",
-    "puntosTotales": 0,
-    "puntosSesion": 0,
+    "puntosTotales": 18,
+    "puntosSesion": 18,
     "logros": [],
     "retosCompletados": [],
     "fechaRegistro": "2025-05-29T22:33:50.702Z",
-    "numeroSesiones": 0,
-    "tiempoTotalEjercicio": 0
+    "numeroSesiones": 1,
+    "tiempoTotalEjercicio": 0.7113595604896545
   },
   {
     "id": 3,
     "name": "pepe",
     "height": 123,
     "photoUrl": "/uploads/default.png",
-    "puntosTotales": 0,
-    "puntosSesion": 0,
+    "puntosTotales": 4,
+    "puntosSesion": 4,
     "logros": [],
     "retosCompletados": [],
     "fechaRegistro": "2025-05-29T22:51:53.514Z",
-    "numeroSesiones": 0,
-    "tiempoTotalEjercicio": 5.4
+    "numeroSesiones": 1,
+    "tiempoTotalEjercicio": 5.7451171875
   },
   {
     "id": 4,
     "name": "alvaro",
     "height": 174,
     "photoUrl": "/uploads/default.png",
-    "puntosTotales": 0,
-    "puntosSesion": 0,
+    "puntosTotales": 9,
+    "puntosSesion": 9,
     "logros": [],
     "retosCompletados": [],
     "fechaRegistro": "2025-05-29T23:04:28.195Z",
-    "numeroSesiones": 0,
-    "tiempoTotalEjercicio": 0
+    "numeroSesiones": 1,
+    "tiempoTotalEjercicio": 0.40458595752716064
   }
 ]

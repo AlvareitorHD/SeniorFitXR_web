@@ -1,43 +1,84 @@
+<!-- users.ejs -->
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Usuarios</title>
   <link rel="stylesheet" href="/styles/styles.css" />
 </head>
+
 <body>
-<%- include('partials/navbar') %>
-  <div class="container">
-    <h1>Usuarios Registrados</h1>
-    <div class="contenedor">
-    <% if (users.length === 0) { %>
-      <p>No hay usuarios registrados todavía.</p>
-    <% } else { %>
-      <% users.forEach(user => { %>
-        <div class="user-card" style="
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          background: #e0f7fa;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-          padding: 20px;
-          margin-bottom: 24px;
-          width: 280px;
-          margin-left: auto;
-          margin-right: auto;
-        ">
-          <a href="/usuarios/<%= user.id %>" style="text-decoration: none; color: inherit; width: 100%;">
-            <img src="<%= user.photoUrl %>" alt="Foto de <%= user.name %>" style="width: 100px; height: 100px; display: block; margin: 0 auto 16px auto;" />
-            <div style="text-align: center;">
-              <strong style="font-size: 1.2em;"><%= user.id %>: <%= user.name %></strong>
-              <div style="margin-top: 8px; color: #555;"><%= user.height %> cm</div>
-            </div>
-          </a>
-        </div>
-      <% }) %>
-    <% } %>
+  <%- include('partials/navbar') %>
+    <div class="container">
+      <h1>Usuarios Registrados</h1>
+      <div class="contenedor">
+        <% if (users.length===0) { %>
+          <p>No hay usuarios registrados todavía.</p>
+          <% } else { %>
+            <% users.forEach(user=> { %>
+              <div class="user-card" data-user-id="<%= user.id %>" style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #e0f7fa;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 20px;
+            margin-bottom: 24px;
+            width: 280px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+          ">
+                <a href="/usuarios/<%= user.id %>" style="text-decoration: none; color: inherit; width: 100%;">
+                  <img src="<%= user.photoUrl %>" alt="Foto de <%= user.name %>"
+                    style="width: 100px; height: 100px; display: block; margin: 0 auto 16px auto;" />
+                  <div style="text-align: center;">
+                    <strong style="font-size: 1.2em;">
+                      <%= user.id %>: <%= user.name %>
+                    </strong>
+                    <div style="margin-top: 8px; color: #555;">
+                      <%= user.height %> cm
+                    </div>
+                    <div class="estado-conexion"
+                      style="color: green; font-weight: bold; margin-top: 6px; display: none;">
+                      Conectado a las Meta Quest
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <% }) %>
+                <% } %>
+      </div>
     </div>
-  </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      socket.on("usuarioConectado", ({ userId, conectado }) => {
+        const card = document.querySelector(`.user-card[data-user-id='${userId}']`);
+        if (!card) return;
+
+        const estado = card.querySelector(".estado-conexion");
+        if (conectado) {
+          estado.style.display = "block";
+        } else {
+          estado.style.display = "none";
+        }
+      });
+
+      // Escuchar estado inicial:
+      socket.on("estadoInicialConexiones", (usuariosConectados) => {
+        usuariosConectados.forEach(userId => {
+          const card = document.querySelector(`.user-card[data-user-id='${userId}']`);
+          if (card) {
+            card.querySelector(".estado-conexion").style.display = "block";
+          }
+        });
+      });
+    </script>
 </body>
+
 </html>

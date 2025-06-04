@@ -6,6 +6,12 @@ const fs = require("fs");
 
 const app = express();
 
+// Usuarios conectados
+const usuariosConectados = new Set();
+
+// Hacemos que esté accesible desde las rutas:
+app.locals.usuariosConectados = usuariosConectados;
+
 // Configuración (igual que antes)
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));

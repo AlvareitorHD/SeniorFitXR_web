@@ -17,6 +17,8 @@ app.locals.io = io;
 io.on("connection", (socket) => {
   console.log("Cliente conectado:", socket.id);
 
+  socket.emit("estadoInicialConexiones", Array.from(app.locals.usuariosConectados));
+
   socket.on("suscribirseUsuario", (userId) => {
     socket.join(`usuario-${userId}`);
     console.log(`Socket ${socket.id} se unió a la sala usuario-${userId}`);

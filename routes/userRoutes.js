@@ -191,5 +191,32 @@ router.patch("/api/usuarios/:id", (req, res) => {
   res.json({ mensaje: "Usuario actualizado correctamente", usuario: user });
 });
 
+router.post("/api/usuarios/:id/connect", (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  if (isNaN(userId)) return res.status(400).json({ error: "ID inválido" });
+
+  const usuariosConectados = req.app.locals.usuariosConectados;
+  usuariosConectados.add(userId);
+
+  const io = req.app.locals.io;
+  if (io) {
+    io.emit("usuarioConectado", { userId, conectado: true });
+  }
+  res.json({ mensaje: `Usuario ${userId} conectado.` });
+});
+
+router.post("/api/usuarios/:id/disconnect", (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  if (isNaN(userId)) return res.status(400).json({ error: "ID inválido" });
+
+  const usuariosConectados = req.app.locals.usuariosConectados;
+  usuariosConectados.delete(userId);
+
+  const io = req.app.locals.io;
+  if (io) {
+    io.emit("usuarioConectado", { userId, conectado: false });
+  }
+  res.json({ mensaje: `Usuario ${userId} desconectado.` });
+});
 
 module.exports = router;

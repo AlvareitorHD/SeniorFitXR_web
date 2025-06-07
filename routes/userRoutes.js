@@ -127,7 +127,9 @@ router.post("/register", upload.single("photo"), (req, res) => {
     puntosSesion: 0,
     logros: [],
     retosCompletados: [],
-    fechaRegistro: new Date().toISOString(),
+    // Comprobar si hay fecha de registro en el cuerpo de la solicitud
+    // Si no, usar la fecha actual
+    fechaRegistro: req.body.fechaRegistro? new Date(req.body.fechaRegistro).toISOString() : new Date().toISOString(),
     numeroSesiones: 0,
     tiempoTotalEjercicio: 0
   };
@@ -217,6 +219,35 @@ router.post("/api/usuarios/:id/disconnect", (req, res) => {
     io.emit("usuarioConectado", { userId, conectado: false });
   }
   res.json({ mensaje: `Usuario ${userId} desconectado.` });
+});
+
+router.post('/api/usuarios/:id/rom', (req, res) => {
+  const { id } = req.params;
+  const { cabeza, manoIzquierda, manoDerecha } = req.body;
+
+  // Validar datos
+  if (
+    typeof cabeza !== 'number' || cabeza < 0 || cabeza > 1 ||
+    typeof manoIzquierda !== 'number' || manoIzquierda < 0 || manoIzquierda > 1 ||
+    typeof manoDerecha !== 'number' || manoDerecha < 0 || manoDerecha > 1
+  ) {
+    return res.status(400).json({ error: 'Datos inválidos o fuera de rango (0-1)' });
+  }
+
+  // Buscar usuario
+  const usuario = req.users.find(u => u.id === parseInt(id, 10));
+  if (isNaN(parseInt(id, 10)) || !usuario) {
+    return res.status(404).json({ error: 'Usuario no encontrado' });
+  }
+
+  // Actualizar ROM (puedes guardar o no según necesites)
+  usuario.rom = { cabeza, manoIzquierda, manoDerecha };
+
+  // Emitir actualización solo a la sala del usuario con Socket.IO
+  const io = req.app.locals.io;
+  io.to(`usuario-${id}`).emit('romActualizado', { usuarioId: id, rom: usuario.rom });
+
+  return res.json({ mensaje: 'Datos ROM recibidos y emitidos' });
 });
 
 module.exports = router;

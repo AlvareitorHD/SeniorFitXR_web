@@ -8,7 +8,6 @@
 ">
   <h3>Gráficas de Progreso</h3>
   <canvas id="graficoEstadisticas" width="400" height="300"></canvas>
-
   <script>
     const ctx = document.getElementById('graficoEstadisticas').getContext('2d');
     window.chart = new Chart(ctx, {
@@ -39,6 +38,100 @@
         scales: {
           y: { beginAtZero: true }
         }
+      }
+    });
+
+
+  </script>
+  
+  <h3>Actividad en Tiempo Real</h3>
+  <canvas id="graficoActividad" width="400" height="300"></canvas>
+
+    <script>
+        // Gráfico actividad en tiempo real (cabeza, mano izquierda y mano derecha)
+    const ctxAct = document.getElementById('graficoActividad').getContext('2d');
+    window.graficoActividad = new Chart(ctxAct, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [
+          {
+            label: 'Cabeza',
+            borderColor: '#4caf50',
+            backgroundColor: '#4caf50',
+            data: [],
+            fill: false,
+            tension: 0.3
+          },
+          {
+            label: 'Mano Izquierda',
+            borderColor: '#2196f3',
+            backgroundColor: '#2196f3',
+            data: [],
+            fill: false,
+            tension: 0.3
+          },
+          {
+            label: 'Mano Derecha',
+            borderColor: '#ff9800',
+            backgroundColor: '#ff9800',
+            data: [],
+            fill: false,
+            tension: 0.3
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        animation: false,
+        scales: {
+          y: {
+            min: 0,
+            max: 1,
+            title: {
+              display: true,
+              text: 'Nivel de Actividad (0 a 1)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Tiempo'
+            }
+          }
+        },
+        plugins: {
+          legend: { display: true }
+        }
+      }
+    });
+
+    // Conectar con Socket.IO
+    const socketa = io();
+    // Unirse a la sala del usuario
+    socketa.emit('suscribirseUsuario', "<%= user.id %>");
+
+    // Actualizar nombre de ejercicio si se envía
+    socketa.on('ejercicioActual', (nombreEjercicio) => {
+      document.getElementById('ejercicioActual').textContent = nombreEjercicio;
+    });
+
+    // Escuchar datos romActualizado para actualizar gráfico en tiempo real
+    socketa.on('romActualizado', ({ usuarioId, rom }) => {
+      if (usuarioId === "<%= user.id %>") {
+        const ahora = new Date().toLocaleTimeString();
+
+        // Mantener max 10 puntos en gráfico
+        if (window.graficoActividad.data.labels.length >= 10) {
+          window.graficoActividad.data.labels.shift();
+          window.graficoActividad.data.datasets.forEach(ds => ds.data.shift());
+        }
+
+        window.graficoActividad.data.labels.push(ahora);
+        window.graficoActividad.data.datasets[0].data.push(rom.cabeza);
+        window.graficoActividad.data.datasets[1].data.push(rom.manoIzquierda);
+        window.graficoActividad.data.datasets[2].data.push(rom.manoDerecha);
+        window.graficoActividad.update();
       }
     });
   </script>

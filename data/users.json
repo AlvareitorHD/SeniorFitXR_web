@@ -4,28 +4,28 @@
     "name": "Manolo García",
     "height": 156,
     "photoUrl": "/uploads/1749047859772-FotoManoloGarcia.png",
-    "puntosTotales": 76,
-    "puntosSesion": 0,
+    "puntosTotales": 95,
+    "puntosSesion": 10,
     "logros": [
       ""
     ],
     "retosCompletados": [],
     "fechaRegistro": "2025-05-29T22:28:54.691Z",
-    "numeroSesiones": 14,
-    "tiempoTotalEjercicio": 12.522970199584961
+    "numeroSesiones": 17,
+    "tiempoTotalEjercicio": 15.51934814453125
   },
   {
     "id": 2,
     "name": "Maria Perez",
     "height": 167,
     "photoUrl": "/uploads/default.png",
-    "puntosTotales": 60,
-    "puntosSesion": 18,
+    "puntosTotales": 84,
+    "puntosSesion": 24,
     "logros": [],
     "retosCompletados": [],
     "fechaRegistro": "2025-05-29T22:33:50.702Z",
-    "numeroSesiones": 3,
-    "tiempoTotalEjercicio": 8.778026580810547
+    "numeroSesiones": 4,
+    "tiempoTotalEjercicio": 10.278026580810547
   },
   {
     "id": 3,
@@ -45,13 +45,13 @@
     "name": "alvaro",
     "height": 174,
     "photoUrl": "/uploads/default.png",
-    "puntosTotales": 9,
-    "puntosSesion": 9,
+    "puntosTotales": 40,
+    "puntosSesion": 18,
     "logros": [],
     "retosCompletados": [],
     "fechaRegistro": "2025-05-29T23:04:28.195Z",
-    "numeroSesiones": 1,
-    "tiempoTotalEjercicio": 0.40458595752716064
+    "numeroSesiones": 5,
+    "tiempoTotalEjercicio": 4.062472820281982
   },
   {
     "id": 5,
@@ -71,12 +71,12 @@
     "name": "yo",
     "height": 123,
     "photoUrl": "/uploads/default.png",
-    "puntosTotales": 0,
-    "puntosSesion": 0,
+    "puntosTotales": 53,
+    "puntosSesion": 28,
     "logros": [],
     "retosCompletados": [],
     "fechaRegistro": "2025-06-06T19:39:02.599Z",
-    "numeroSesiones": 0,
-    "tiempoTotalEjercicio": 0
+    "numeroSesiones": 2,
+    "tiempoTotalEjercicio": 4.103420734405518
   }
 ]

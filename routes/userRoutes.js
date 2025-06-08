@@ -250,4 +250,20 @@ router.post('/api/usuarios/:id/rom', (req, res) => {
   return res.json({ mensaje: 'Datos ROM recibidos y emitidos' });
 });
 
+router.post('/api/usuarios/:id/ejercicio', async (req, res) => {
+  const userId = req.params.id;
+  const { ejercicioActual } = req.body;
+
+  // Aquí simplemente emitimos por Socket.IO
+  const io = req.app.locals.io;
+  if (io) {
+    io.to(`usuario-${userId}`).emit('ejercicioActual', `Ejercicio Actual: ${ejercicioActual}`);
+  }
+
+
+  console.log(`Usuario ${userId} ahora está en: ${ejercicioActual}`);
+  res.sendStatus(200);
+});
+
+
 module.exports = router;

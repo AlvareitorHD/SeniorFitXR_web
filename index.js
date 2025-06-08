@@ -15,7 +15,7 @@ app.locals.io = io;
 
 // Configurar eventos Socket.IO
 io.on("connection", (socket) => {
-  console.log("Cliente conectado:", socket.id);
+  console.log("Cliente conectado: \n Socket: ", socket.id, "\n IP: ", socket.handshake.address);
 
   socket.emit("estadoInicialConexiones", Array.from(app.locals.usuariosConectados));
 
@@ -25,7 +25,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    console.log("Cliente desconectado:", socket.id);
+    console.log("Cliente desconectado:", socket.handshake.address);
   });
 });
 

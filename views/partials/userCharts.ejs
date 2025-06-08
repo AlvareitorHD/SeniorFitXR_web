@@ -43,6 +43,8 @@
 
 
   </script>
+
+  <h2 id="ejercicioActual" style="color: blue;">Ejercicio Actual: <%= user.ejercicioActual || 'Ninguno' %></h2>
   
   <h3>Actividad en Tiempo Real</h3>
   <canvas id="graficoActividad" width="400" height="300"></canvas>
@@ -112,8 +114,8 @@
     socketa.emit('suscribirseUsuario', "<%= user.id %>");
 
     // Actualizar nombre de ejercicio si se envía
-    socketa.on('ejercicioActual', (nombreEjercicio) => {
-      document.getElementById('ejercicioActual').textContent = nombreEjercicio;
+    socketa.on('ejercicioActual', (ejercicioActual) => {
+      document.getElementById('ejercicioActual').textContent = ejercicioActual;
     });
 
     // Escuchar datos romActualizado para actualizar gráfico en tiempo real

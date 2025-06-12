@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar usuario</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <div class="container" style="max-width: 600px; margin: auto; padding: 2rem;">
+        <a href="/usuarios/<%= user.id %>" class="btn btn-secondary" style="float: left;">&larr; Volver</a> <br>
+        <h2>Editar usuario: <%= user.name %></h2>
+        <!-- Enviar a usuarios/id/edit-->
+        <form action="/usuarios/<%= user.id %>/edit" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="name">Nombre:</label>
+                <input type="text" name="name" id="name" value="<%= user.name %>" required>
+            </div>
+
+            <div>
+                <label for="height">Altura (cm):</label>
+                <input type="number" name="height" id="height" value="<%= user.height %>" required>
+            </div>
+
+            <div>
+                <label for="photo">Nueva Foto (opcional):</label>
+                <input type="file" name="photo" id="photo" accept="image/*" onchange="previewImage(event)">
+            </div>
+
+            <div style="margin-top: 1rem;">
+                <label>Previsualización:</label><br>
+                <img id="photoPreview" src="<%= user.photoUrl ? user.photoUrl : '' %>" alt="Previsualización de la foto" style="max-width: 200px; max-height: 200px; display: <%= user.photoUrl ? 'inline' : 'none' %>;">
+            </div>
+
+            <button type="submit">💾 Guardar Cambios</button>
+        </form>
+    </div>
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            const preview = document.getElementById('photoPreview');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'inline';
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -24,7 +24,7 @@
     "id": 2,
     "name": "Maria Perez",
     "height": 167,
-    "photoUrl": "/uploads/default.png",
+    "photoUrl": "/uploads/1748558030559-Mujer mayor en su salÃ³n acogedor.png",
     "puntosTotales": 84,
     "puntosSesion": 0,
     "logros": [],
@@ -60,23 +60,10 @@
     "tiempoTotalEjercicio": 4.062472820281982
   },
   {
-    "id": 5,
-    "name": "Francisco Luis",
-    "height": 175,
-    "photoUrl": "/uploads/1749047859772-FotoFranciscoGutierrez.jpg",
-    "puntosTotales": 22,
-    "puntosSesion": 22,
-    "logros": [],
-    "retosCompletados": [],
-    "fechaRegistro": "2025-06-04T14:37:39.813Z",
-    "numeroSesiones": 1,
-    "tiempoTotalEjercicio": 2.066666603088379
-  },
-  {
     "id": 6,
-    "name": "yo",
-    "height": 123,
-    "photoUrl": "/uploads/default.png",
+    "name": "antonio",
+    "height": 125,
+    "photoUrl": "/uploads/1749758911146-Crosshairs_Red.svg.png",
     "puntosTotales": 53,
     "puntosSesion": 28,
     "logros": [],
@@ -86,15 +73,15 @@
     "tiempoTotalEjercicio": 4.103420734405518
   },
   {
-    "id": 7,
-    "name": "HOLA",
-    "height": 153,
+    "id": 8,
+    "name": "Alvaro",
+    "height": 169,
     "photoUrl": "/uploads/default.png",
-    "puntosTotales": 10,
-    "puntosSesion": 10,
+    "puntosTotales": 29,
+    "puntosSesion": 4,
     "logros": [],
-    "fechaRegistro": "2025-06-12T13:10:03.000Z",
-    "numeroSesiones": 1,
-    "tiempoTotalEjercicio": 2.1131818294525146
+    "fechaRegistro": "2025-06-12T14:23:36.000Z",
+    "numeroSesiones": 2,
+    "tiempoTotalEjercicio": 2.5
   }
 ]

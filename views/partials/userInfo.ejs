@@ -12,7 +12,13 @@
   <h2 id="user-name"><%= user.name %> (ID: <%= user.id %>)</h2>
   <p><strong>Registrado el:</strong> <span id="user-fecha">
     <%= new Date(user.fechaRegistro).toLocaleDateString('es-ES') %>
-  </span></p>
+  </span>
+  <button id="editar-usuario"
+  style="float: right; background-color: #4c65af; color: white; padding: 0.5rem 1rem; border: none; border-radius: 5px; margin-bottom: 1rem;"
+  onclick="window.location.href='/usuarios/<%= user.id %>/editar'">
+    ✏️ Editar Usuario
+  </button>
+  </p>
 
   <div class="section">
     <h4>Información Física</h4>
@@ -66,5 +72,4 @@
       });
     }
   });
-
 </script>

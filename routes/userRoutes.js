@@ -392,4 +392,72 @@ router.delete("/usuarios/:id", (req, res) => {
   res.json({ mensaje: "Usuario eliminado correctamente" });
 });
 
+
+// Editar un usuario
+router.get("/usuarios/:id/editar", async (req, res) => {
+  const usuario = req.users.find(u => u.id === parseInt(req.params.id, 10));
+  if (isNaN(parseInt(req.params.id, 10))) {
+    return res.status(400).send("ID de usuario no válido");
+  }
+  if (!usuario) return res.status(404).send("Usuario no encontrado");
+  res.render("editUser", { user: usuario });
+});
+
+// Actualizar un usuario
+router.post("/usuarios/:id/edit", upload.single("photo"), (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  if (isNaN(userId)) {
+    return res.status(400).json({ error: "ID de usuario no válido" });
+  }
+
+  console.log(`Actualizando usuario EDIT con ID: ${userId}`);
+  const users = readUsers();
+  const userIndex = users.findIndex(u => u.id === userId);
+  if (userIndex === -1) {
+    console.log(`Usuario no encontrado: ${userId}`);
+    return res.status(404).json({ error: "Usuario no encontrado" });
+  }
+
+  const user = users[userIndex];
+  const { name, height } = req.body;
+
+  if (name) user.name = name.trim();
+  if (height) {
+    const heightNum = parseInt(height, 10);
+    if (isNaN(heightNum) || heightNum <= 0 || heightNum >= 250) {
+      return res.status(400).json({ error: "Altura no válida (en metros)" });
+    }
+    user.height = heightNum;
+  }
+
+  // Validación de la imagen
+  if (req.file) {
+    const { mimetype, size, originalname } = req.file;
+    const ext = path.extname(originalname).toLowerCase();
+    const validExtensions = [".jpg", ".jpeg", ".png", ".gif"];
+    if (
+      !mimetype.startsWith("image/") ||
+      size > 5 * 1024 * 1024 ||
+      !validExtensions.includes(ext)
+    ) {
+      return res.status(400).json({ error: "Imagen no válida" });
+    }
+
+    // Eliminar foto anterior si existe
+    if (user.photoUrl && user.photoUrl !== "/uploads/default.png") {
+      const photoPath = path.join(__dirname, "..", user.photoUrl);
+      if (fs.existsSync(photoPath)) {
+        fs.unlinkSync(photoPath);
+      }
+    }
+
+    user.photoUrl = `/uploads/${req.file.filename}`;
+  }
+
+  users[userIndex] = user;
+  saveUsers(users);
+
+  res.redirect(`/usuarios/${userId}`);
+});
+
 module.exports = router;

@@ -16,7 +16,7 @@
 
   <div class="section">
     <h4>Información Física</h4>
-    <p>Altura: <span id="user-height"><%= user.height %></span> m</p>
+    <p>Altura: <span id="user-height"><%= user.height / 100 %></span> metros</p>
   </div>
 
   <div class="section">
@@ -40,16 +40,31 @@
     </ul>
   </div>
 
-  <div class="section">
-    <h4>Retos Completados</h4>
-    <ul id="user-retos">
-      <% if (user.retosCompletados.length > 0) { %>
-        <% user.retosCompletados.forEach(reto => { %>
-          <li>✅ <%= reto %></li>
-        <% }) %>
-      <% } else { %>
-        <li><em>No ha completado ningún reto aún.</em></li>
-      <% } %>
-    </ul>
-  </div>
+  <button id="eliminar-usuario" style="background-color: crimson; color: white; padding: 0.5rem 1rem; border: none; border-radius: 5px;">
+  🗑️ Eliminar Usuario
+  </button>
+
 </div>
+
+<script>
+  document.getElementById("eliminar-usuario").addEventListener("click", () => {
+    if (confirm("¿Estás seguro de que quieres eliminar este usuario? Esta acción no se puede deshacer.")) {
+      fetch(`/usuarios/${<%= user.id %>}`, {
+        method: "DELETE"
+      })
+      .then(response => {
+        if (response.ok) {
+          alert("Usuario eliminado correctamente.");
+          window.location.href = "/usuarios";
+        } else {
+          alert("Error al eliminar el usuario. Inténtalo de nuevo más tarde.");
+        }
+      })
+      .catch(error => {
+        console.error("Error al eliminar el usuario:", error);
+        alert("Error al eliminar el usuario. Inténtalo de nuevo más tarde.");
+      });
+    }
+  });
+
+</script>

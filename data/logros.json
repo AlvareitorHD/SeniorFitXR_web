@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "nombre": "Primeros 10 puntos",
+    "descripcion": "Gana al menos 10 puntos en total.",
+    "tipo": "puntos_totales",
+    "icono": "/uploads/10.png",
+    "parametro": 10
+  },
+  {
+    "id": 2,
+    "nombre": "Semanal 50 puntos",
+    "descripcion": "Gana más de 50 puntos en una semana.",
+    "tipo": "puntos_semanales",
+    "icono": "/uploads/50.png",
+    "parametro": 50
+  }
+]

@@ -46,12 +46,7 @@
         ? user.logros.map(logro => `<li>🏅 ${logro.name}</li>`).join("")
         : "<li><em>No hay logros todavía.</em></li>";
 
-      const retosList = document.getElementById("user-retos");
-      retosList.innerHTML = user.retosCompletados.length
-        ? user.retosCompletados.map(reto => `<li>✅ ${reto}</li>`).join("")
-        : "<li><em>No ha completado ningún reto aún.</em></li>";
-
-      // Actualiza gráfico
+      // Actualiza gráfico de estadísticas
       if (window.chart) {
         chart.data.datasets[0].data = [
           user.puntosTotales,

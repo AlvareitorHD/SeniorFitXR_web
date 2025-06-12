@@ -4,15 +4,21 @@
     "name": "Manolo García",
     "height": 156,
     "photoUrl": "/uploads/1749047859772-FotoManoloGarcia.png",
-    "puntosTotales": 95,
-    "puntosSesion": 10,
+    "puntosTotales": 121,
+    "puntosSesion": 1,
     "logros": [
-      ""
+      {
+        "id": 0,
+        "name": "",
+        "description": "",
+        "iconUrl": "",
+        "dateAchieved": "",
+        "semanasCumplidas": 0
+      }
     ],
-    "retosCompletados": [],
     "fechaRegistro": "2025-05-29T22:28:54.691Z",
-    "numeroSesiones": 17,
-    "tiempoTotalEjercicio": 15.51934814453125
+    "numeroSesiones": 20,
+    "tiempoTotalEjercicio": 16.598968505859375
   },
   {
     "id": 2,
@@ -20,11 +26,11 @@
     "height": 167,
     "photoUrl": "/uploads/default.png",
     "puntosTotales": 84,
-    "puntosSesion": 24,
+    "puntosSesion": 0,
     "logros": [],
     "retosCompletados": [],
     "fechaRegistro": "2025-05-29T22:33:50.702Z",
-    "numeroSesiones": 4,
+    "numeroSesiones": 5,
     "tiempoTotalEjercicio": 10.278026580810547
   },
   {
@@ -32,13 +38,13 @@
     "name": "pepe",
     "height": 123,
     "photoUrl": "/uploads/default.png",
-    "puntosTotales": 19,
-    "puntosSesion": 4,
+    "puntosTotales": 43,
+    "puntosSesion": 24,
     "logros": [],
     "retosCompletados": [],
     "fechaRegistro": "2025-05-29T22:51:53.514Z",
-    "numeroSesiones": 3,
-    "tiempoTotalEjercicio": 8.878450393676758
+    "numeroSesiones": 4,
+    "tiempoTotalEjercicio": 9.954018592834473
   },
   {
     "id": 4,
@@ -58,13 +64,13 @@
     "name": "Francisco Luis",
     "height": 175,
     "photoUrl": "/uploads/1749047859772-FotoFranciscoGutierrez.jpg",
-    "puntosTotales": 0,
-    "puntosSesion": 0,
+    "puntosTotales": 22,
+    "puntosSesion": 22,
     "logros": [],
     "retosCompletados": [],
     "fechaRegistro": "2025-06-04T14:37:39.813Z",
-    "numeroSesiones": 0,
-    "tiempoTotalEjercicio": 0
+    "numeroSesiones": 1,
+    "tiempoTotalEjercicio": 2.066666603088379
   },
   {
     "id": 6,
@@ -78,5 +84,17 @@
     "fechaRegistro": "2025-06-06T19:39:02.599Z",
     "numeroSesiones": 2,
     "tiempoTotalEjercicio": 4.103420734405518
+  },
+  {
+    "id": 7,
+    "name": "HOLA",
+    "height": 153,
+    "photoUrl": "/uploads/default.png",
+    "puntosTotales": 10,
+    "puntosSesion": 10,
+    "logros": [],
+    "fechaRegistro": "2025-06-12T13:10:03.000Z",
+    "numeroSesiones": 1,
+    "tiempoTotalEjercicio": 2.1131818294525146
   }
 ]

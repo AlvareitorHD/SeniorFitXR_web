@@ -18,6 +18,9 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static("public"));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/styles", express.static(path.join(__dirname, "styles")));
+// Sirve Chart.js desde node_modules
+app.use('/scripts', express.static(__dirname + '/node_modules/chart.js/dist'));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

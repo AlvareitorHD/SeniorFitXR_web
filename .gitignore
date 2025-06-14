@@ -6,3 +6,6 @@ node_modules/
 
 # Ignorar uploads
 uploads/
+
+# Ignorar usuarios y logros almacenados en data/
+data/

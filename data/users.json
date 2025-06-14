@@ -4,8 +4,8 @@
     "name": "Manolo García",
     "height": 156,
     "photoUrl": "/uploads/1749047859772-FotoManoloGarcia.png",
-    "puntosTotales": 121,
-    "puntosSesion": 1,
+    "puntosTotales": 134,
+    "puntosSesion": 13,
     "logros": [
       {
         "id": 0,
@@ -17,8 +17,8 @@
       }
     ],
     "fechaRegistro": "2025-05-29T22:28:54.691Z",
-    "numeroSesiones": 20,
-    "tiempoTotalEjercicio": 16.598968505859375
+    "numeroSesiones": 21,
+    "tiempoTotalEjercicio": 17.598968505859375
   },
   {
     "id": 2,
@@ -74,14 +74,26 @@
   },
   {
     "id": 8,
-    "name": "Alvaro",
+    "name": "Álvaro",
     "height": 169,
-    "photoUrl": "/uploads/default.png",
+    "photoUrl": "/uploads/1749845427908-yop.jpg",
     "puntosTotales": 29,
     "puntosSesion": 4,
     "logros": [],
     "fechaRegistro": "2025-06-12T14:23:36.000Z",
     "numeroSesiones": 2,
     "tiempoTotalEjercicio": 2.5
+  },
+  {
+    "id": 9,
+    "name": "Jose Ramon",
+    "height": 171,
+    "photoUrl": "/uploads/default.png",
+    "puntosTotales": 19,
+    "puntosSesion": 19,
+    "logros": [],
+    "fechaRegistro": "2025-06-13T15:21:16.000Z",
+    "numeroSesiones": 1,
+    "tiempoTotalEjercicio": 3
   }
 ]

@@ -1,4 +1,4 @@
-# 🚀 Servidor Node.js con Express + Docker + Ngrok
+# 🚀 Servidor Node.js con Express + Ngrok
 
 Este proyecto es un servidor web Node.js construido con Express. Permite manejar usuarios, actualizar datos y visualizar estadísticas con Chart.js y Socket.io. Incluye instrucciones para exponerlo mediante Ngrok.
 
@@ -8,12 +8,11 @@ Este proyecto es un servidor web Node.js construido con Express. Permite manejar
 
 ```
 ├── index.js
+├── server.js
 ├── routes/
 ├── views/
 ├── public/
 ├── package.json
-├── Dockerfile
-├── .dockerignore
 └── README.md
 ```
 

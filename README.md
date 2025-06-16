@@ -31,7 +31,7 @@ Este proyecto es un servidor web Node.js construido con Express. Permite manejar
 1. Instala dependencias:
 
    ```bash
-   npm install
+   npm install express ejs socket.io chart.js
    ```
 
 2. Ejecuta el servidor:
